@@ -1,73 +1,56 @@
-# React + TypeScript + Vite
+# Mastering React Library 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Repositori ini berisi kumpulan implementasi praktis dan eksplorasi berbagai library populer di ekosistem React. Fokus utama proyek ini adalah mempelajari integrasi antar library, manajemen state, validasi form, dan pengambilan data secara efisien.
 
-Currently, two official plugins are available:
+## 🛠️ Stack Teknologi
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Framework:** [React](https://react.dev/) + [Vite](https://vitejs.dev/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Form Management:** [React Hook Form](https://react-hook-form.com/)
+- **Validation:** [Zod](https://zod.dev/)
+- **Server State:** [TanStack Query (React Query)](https://tanstack.com/query/latest)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📂 Struktur Proyek
 
-## Expanding the ESLint configuration
+Proyek ini dibagi menjadi beberapa modul pembelajaran:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 1. React Form & Data Validation
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Implementasi form yang _type-safe_ menggunakan React Hook Form dan Zod.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Reusable Form Component:** Penggunaan TypeScript Generics (`<T>`) untuk membuat komponen Form yang bisa digunakan berulang kali.
+- **Schema Validation:** Validasi sisi klien yang ketat dengan Zod.
+- **Automatic Class Sorting:** Integrasi Prettier plugin untuk merapikan class Tailwind secara otomatis.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 2. React Query Introduction
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Eksplorasi manajemen server state untuk aplikasi yang lebih responsif.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **useQuery:** Mengambil data dari API publik (Fake Store API).
+- **useMutation:** Menangani pengiriman data (Login) dan sinkronisasi state aplikasi.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3. React Context Introduction
+
+Mempelajari manajemen state global sederhana menggunakan built-in Context API dari React untuk menghindari _prop drilling_.
+
+---
+
+## 🚀 Fitur Utama pada Reusable Form
+
+Salah satu pencapaian utama dalam proyek ini adalah pembuatan komponen `Form.tsx` yang sangat fleksibel:
+
+```typescript
+// Contoh penggunaan komponen Form yang sudah mendukung Generics
+<Form
+  schema={loginSchema}
+  onSubmit={onLogin}
+  fields={[
+    { name: "username", label: "Username", placeholder: "..." },
+    { name: "password", label: "Password", type: "password" }
+  ]}
+  isLoading={isPending}
+/>
 ```
